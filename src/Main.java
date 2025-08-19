@@ -10,47 +10,51 @@ public class Main {
         }
 
         //Задача 2//
-        int distance = 0;
-        int allDistance = 42195;
-        do {
-            distance +=500;
-            int a = allDistance-distance;
-            System.out.println("Держитесь! Осталось "+a+"метров");
-        } while (distance<(allDistance-500));
 
-        for (;distance <= allDistance; distance += 500) {
-            int b = allDistance-distance;
-            System.out.println("Держитесь! Осталось "+b+"метров");
+        int allDistance = 42195;
+        int distance = 0;
+        do {
+            int a = allDistance-distance;
+            System.out.println("Держитесь! Осталось "+a+" метров");
+            distance +=500;
+        } while (distance<=allDistance);
+
+        for (int distance2=0; distance2 <= allDistance; distance2 += 500) {
+            int b = allDistance-distance2;
+            System.out.println("Держитесь! Осталось "+b+" метров");
         }
 
         //Задача 3//
-        int money = 2700;
+        int money = 1101;
         int days = 1;
         int dailyPayment = 100;
-        while (money>dailyPayment){
+        while (money>0){
+            if(days%5==0) {
+                days++;
+                continue;
+            }
+            money-=100;
+            if (money<dailyPayment) continue;
             days++;
-            if(days%5==0){
-                continue;
-            }
-            money-=dailyPayment;
         }
-        System.out.println(days-1);
+        System.out.println(days);
 
-        money=2700;
-        for (days=1;money>dailyPayment;days++){
-            if(days%5==0){
+        int money2 = 1101;
+        int days2 = 1;
+        for (;money2>=dailyPayment;days2++){
+            if(days2%5==0){
                 continue;
             }
-            money-=dailyPayment;
+            money2-=dailyPayment;
         }
-        System.out.println(days-1);
+        System.out.println(days2-1);
 
         //Задача 4//
         int month = 0;
-        int total = 0;
+        double total = 0;
         do{
-            total+=15000;
             month++;
+            total+=15000;
             if(month%6==0){
                 total+=total*0.07;
             }
@@ -66,13 +70,15 @@ public class Main {
         int minute = 0;
         int overheats = 0;
         while (charge<100){
+            if(overheats==3){
+                break;
+            }
             minute++;
             if(minute%10==0){
                 overheats++;
+                minute+=2;
+                System.out.println("Зарядка прекращена. Текущий заряд: "+charge+" %");
                 continue;
-            }
-            if(overheats==3){
-                break;
             }
             charge+=2;
         }
